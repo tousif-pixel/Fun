@@ -31,7 +31,8 @@ jobs:
           cordova create myApp
           cd myApp
           cordova platform add android
-          cp -r ../* www/
+          cp -r ../www/* www/
+     
           cordova build android
 
       - name: Upload APK

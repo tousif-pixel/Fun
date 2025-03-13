@@ -1,9 +1,10 @@
+
 name: Build APK
 
 on:
   push:
     branches:
-      - main  # Jab aap main branch me push karenge, yeh run hoga
+      - main  # Jab aap main branch me push karenge, workflow run hoga
 
 jobs:
   build:
@@ -12,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 16
 
@@ -23,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Install Cordova
-        run: npm install -g cordova
+        run: npm install -g cordova@latest
 
       - name: Create Cordova Project
         run: |
@@ -34,7 +35,7 @@ jobs:
           cordova build android
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
           path: myApp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
